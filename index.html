@@ -1,669 +1,238 @@
-<!doctype html>
-<html lang="en" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yashvi Tyagi — Where Data Connects Dreams</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-  <style>
-    html, body { height: 100%; margin: 0; }
-    * { box-sizing: border-box; }
-    
-    :root {
-      --midnight: #0B1D2A;
-      --teal: #105666;
-      --mist: #EAE6F2;
-      --lavender: #BAB0C8;
-      --beige: #F7F4D5;
-    }
-    
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--midnight);
-      color: var(--mist);
-    }
-    
-    .font-serif {
-      font-family: 'Cormorant Garamond', serif;
-    }
-    
-    .starry-bg {
-      background: linear-gradient(180deg, #0B1D2A 0%, #0f2635 30%, #105666 70%, #0B1D2A 100%);
-      position: relative;
-    }
-    
-    .starry-bg::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, rgba(234, 230, 242, 0.4), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(186, 176, 200, 0.3), transparent),
-        radial-gradient(1px 1px at 90px 40px, rgba(234, 230, 242, 0.5), transparent),
-        radial-gradient(2px 2px at 130px 80px, rgba(186, 176, 200, 0.2), transparent),
-        radial-gradient(1px 1px at 160px 120px, rgba(234, 230, 242, 0.4), transparent),
-        radial-gradient(2px 2px at 200px 50px, rgba(186, 176, 200, 0.3), transparent),
-        radial-gradient(1px 1px at 250px 90px, rgba(234, 230, 242, 0.5), transparent),
-        radial-gradient(2px 2px at 300px 130px, rgba(186, 176, 200, 0.2), transparent),
-        radial-gradient(1px 1px at 350px 60px, rgba(234, 230, 242, 0.4), transparent),
-        radial-gradient(2px 2px at 400px 100px, rgba(186, 176, 200, 0.3), transparent);
-      background-size: 450px 200px;
-      animation: twinkle 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-    
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.95) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    .animate-fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-    
-    .animate-modal {
-      animation: modalIn 0.3s ease-out forwards;
-    }
-    
-    .card-hover {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(186, 176, 200, 0.15);
-    }
-    
-    .glow-hover {
-      transition: all 0.3s ease;
-    }
-    
-    .glow-hover:hover {
-      box-shadow: 0 0 30px rgba(186, 176, 200, 0.3);
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, var(--lavender) 0%, #9a8fb3 100%);
-      color: var(--midnight);
-      transition: all 0.3s ease;
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(186, 176, 200, 0.4);
-    }
-    
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--lavender), transparent);
-      opacity: 0.3;
-    }
-    
-    .modal-overlay {
-      backdrop-filter: blur(8px);
-      background: rgba(11, 29, 42, 0.85);
-    }
-    
-    .scroll-smooth {
-      scroll-behavior: smooth;
-    }
-    
-    .text-gradient {
-      background: linear-gradient(135deg, var(--mist) 0%, var(--lavender) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    section {
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-    
-    section:nth-child(1) { animation-delay: 0.1s; }
-    section:nth-child(2) { animation-delay: 0.2s; }
-    section:nth-child(3) { animation-delay: 0.3s; }
-    section:nth-child(4) { animation-delay: 0.4s; }
-    section:nth-child(5) { animation-delay: 0.5s; }
-    section:nth-child(6) { animation-delay: 0.6s; }
-    section:nth-child(7) { animation-delay: 0.7s; }
-    section:nth-child(8) { animation-delay: 0.8s; }
-  </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full">
-  <div class="starry-bg h-full overflow-auto scroll-smooth"><!-- Hero Section -->
-   <section id="hero" class="min-h-screen flex items-center justify-center px-6 py-20 relative">
-    <div class="text-center max-w-3xl mx-auto relative z-10">
-     <div class="animate-float mb-8">
-      <svg class="w-16 h-16 mx-auto mb-6 text-lavender opacity-60" viewbox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" opacity="0.5" /> <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="1" opacity="0.3" /> <circle cx="50" cy="50" r="15" fill="currentColor" opacity="0.2" /> <circle cx="50" cy="50" r="5" fill="currentColor" opacity="0.8" />
-      </svg>
-     </div>
-     <h1 id="hero-name" class="font-serif text-5xl md:text-7xl font-semibold mb-4 text-gradient">Yashvi Tyagi</h1>
-     <p id="hero-tagline" class="font-serif text-2xl md:text-3xl italic mb-6" style="color: var(--lavender);">"Where Data Connects Dreams."</p>
-     <p id="hero-subtitle" class="text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto" style="color: var(--mist); opacity: 0.85;">Economics student, researcher, and music creator exploring human stories through data and sound.</p>
-     <div class="flex flex-wrap justify-center gap-4"><button onclick="scrollToSection('research')" class="btn-primary px-8 py-3 rounded-full font-medium"> View Research </button> <button onclick="scrollToSection('creative')" class="px-8 py-3 rounded-full font-medium border border-lavender hover:bg-lavender hover:text-midnight transition-all" style="border-color: var(--lavender); color: var(--lavender);"> Creative Space </button> <button onclick="scrollToSection('about')" class="px-8 py-3 rounded-full font-medium border border-mist hover:bg-mist hover:text-midnight transition-all" style="border-color: var(--mist); color: var(--mist); opacity: 0.8;"> About Me </button>
-     </div>
-    </div><!-- Decorative elements -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-     <svg class="w-6 h-6" style="color: var(--mist); opacity: 0.5;" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-     </svg>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- About Section -->
-   <section id="about" class="py-24 px-6">
-    <div class="max-w-5xl mx-auto">
-     <h2 id="about-title" class="font-serif text-4xl md:text-5xl text-center mb-16 text-gradient">About Me</h2>
-     <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6">
-       <div class="w-64 h-64 mx-auto md:mx-0 rounded-full overflow-hidden relative" style="background: linear-gradient(135deg, var(--teal), var(--lavender));">
-        <div class="absolute inset-4 rounded-full flex items-center justify-center" style="background: var(--midnight);"><span class="font-serif text-6xl" style="color: var(--lavender);">YT</span>
-        </div>
-       </div>
-      </div>
-      <div class="space-y-6 text-lg leading-relaxed" style="color: var(--mist); opacity: 0.9;">
-       <p>I'm an <strong style="color: var(--lavender);">Economics (Hons.) undergraduate</strong> with a deep curiosity for understanding how systems shape lives — from financial markets to human behavior.</p>
-       <p>My academic journey weaves through <strong style="color: var(--lavender);">policy research, data analysis, and financial systems</strong>, always seeking the stories hidden within numbers.</p>
-       <p>Beyond spreadsheets and econometrics, I find balance in <strong style="color: var(--lavender);">music and writing</strong> — creative outlets that help me process the world and express what data alone cannot capture.</p>
-       <p class="font-serif italic text-xl" style="color: var(--lavender);">I believe every dataset tells a human story, and every song holds a truth worth exploring.</p>
-      </div>
-     </div>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- Research Section -->
-   <section id="research" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-     <h2 class="font-serif text-4xl md:text-5xl text-center mb-6 text-gradient">Research &amp; Analytical Projects</h2>
-     <p class="text-center mb-16 max-w-2xl mx-auto" style="color: var(--mist); opacity: 0.7;">Exploring complex questions through rigorous analysis and thoughtful interpretation.</p>
-     <div class="grid md:grid-cols-2 gap-8"><!-- Project 1 -->
-      <div class="card-hover glow-hover rounded-2xl p-8 cursor-pointer" style="background: rgba(247, 244, 213, 0.08); border: 1px solid rgba(186, 176, 200, 0.2);" onclick="openModal('modal1')">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--teal), var(--lavender));">
-         <svg class="w-6 h-6" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-         </svg>
-        </div>
-        <div>
-         <h3 class="font-serif text-xl font-semibold mb-2" style="color: var(--beige);">Arunachal Pradesh Development Report</h3>
-         <p class="text-sm" style="color: var(--lavender);">2000–2024 Analysis</p>
-        </div>
-       </div>
-       <p class="mb-4" style="color: var(--mist); opacity: 0.8;">Comprehensive state development analysis examining sectoral growth patterns and policy effectiveness.</p>
-       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs" style="background: rgba(16, 86, 102, 0.4); color: var(--mist);">Comparative Analysis</span> <span class="px-3 py-1 rounded-full text-xs" style="background: rgba(16, 86, 102, 0.4); color: var(--mist);">Policy Research</span>
-       </div>
-      </div><!-- Project 2 -->
-      <div class="card-hover glow-hover rounded-2xl p-8 cursor-pointer" style="background: rgba(247, 244, 213, 0.08); border: 1px solid rgba(186, 176, 200, 0.2);" onclick="openModal('modal2')">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--lavender), var(--teal));">
-         <svg class="w-6 h-6" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-         </svg>
-        </div>
-        <div>
-         <h3 class="font-serif text-xl font-semibold mb-2" style="color: var(--beige);">Impact of Short-Form Digital Content</h3>
-         <p class="text-sm" style="color: var(--lavender);">Behavioral Research</p>
-        </div>
-       </div>
-       <p class="mb-4" style="color: var(--mist); opacity: 0.8;">Survey-based research exploring the relationship between digital consumption and attention patterns.</p>
-       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs" style="background: rgba(16, 86, 102, 0.4); color: var(--mist);">SPSS Analysis</span> <span class="px-3 py-1 rounded-full text-xs" style="background: rgba(16, 86, 102, 0.4); color: var(--mist);">Behavioral Study</span>
-       </div>
-      </div><!-- Project 3 -->
-      <div class="card-hover glow-hover rounded-2xl p-8 cursor-pointer" style="background: rgba(247, 244, 213, 0.08); border: 1px solid rgba(186, 176, 200, 0.2);" onclick="openModal('modal3')">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--teal), var(--mist));">
-         <svg class="w-6 h-6" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-         </svg>
-        </div>
-        <div>
-         <h3 class="font-serif text-xl font-semibold mb-2" style="color: var(--beige);">India's Foreign Exchange Management</h3>
-         <p class="text-sm" style="color: var(--lavender);">Framework Analysis</p>
-        </div>
-       </div>
-       <p class="mb-4" style="color: var(--mist); opacity: 0.8;">RBI secondary data analysis examining policy phases and their impact on financial stability.</p>
-       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs" style="background: rgba(16, 86, 102, 0.4); color: var(--mist);">RBI Data</span> <span class="px-3 py-1 rounded-full text-xs" style="background: rgba(16, 86, 102, 0.4); color: var(--mist);">Financial Policy</span>
-       </div>
-      </div><!-- Project 4 - Published Work -->
-      <div class="card-hover glow-hover rounded-2xl p-8 cursor-pointer" style="background: rgba(247, 244, 213, 0.08); border: 1px solid rgba(186, 176, 200, 0.2);" onclick="openModal('modal4')">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--lavender), var(--beige));">
-         <svg class="w-6 h-6" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-         </svg>
-        </div>
-        <div>
-         <h3 class="font-serif text-xl font-semibold mb-2" style="color: var(--beige);">"Unbreakable Bonds"</h3>
-         <p class="text-sm" style="color: var(--lavender);">Published Work — Ecobizz Magazine</p>
-        </div>
-       </div>
-       <p class="mb-4" style="color: var(--mist); opacity: 0.8;">Poetry contributions exploring themes of love, longing, and human connection.</p>
-       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs" style="background: rgba(186, 176, 200, 0.3); color: var(--mist);">Poetry</span> <span class="px-3 py-1 rounded-full text-xs" style="background: rgba(186, 176, 200, 0.3); color: var(--mist);">Feb 2025</span>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- Professional Experience -->
-   <section id="experience" class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-     <h2 class="font-serif text-4xl md:text-5xl text-center mb-16 text-gradient">Professional Experience</h2>
-     <div class="card-hover glow-hover rounded-2xl p-8 cursor-pointer mx-auto max-w-2xl" style="background: rgba(247, 244, 213, 0.08); border: 1px solid rgba(186, 176, 200, 0.2);" onclick="openModal('modal5')">
-      <div class="flex items-center gap-6">
-       <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--teal), var(--lavender));">
-        <svg class="w-8 h-8" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-       </div>
-       <div>
-        <h3 class="font-serif text-2xl font-semibold mb-1" style="color: var(--beige);">Market Research Intern</h3>
-        <p style="color: var(--lavender);">First Contact (FC)</p>
-        <p class="text-sm mt-2" style="color: var(--mist); opacity: 0.7;">Click to view details →</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- Skills Section -->
-   <section id="skills" class="py-24 px-6">
-    <div class="max-w-5xl mx-auto">
-     <h2 class="font-serif text-4xl md:text-5xl text-center mb-16 text-gradient">Skills</h2>
-     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-      <div class="glow-hover rounded-2xl p-6 text-center transition-all" style="background: rgba(16, 86, 102, 0.3); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);">
-        <svg class="w-6 h-6" style="color: var(--lavender);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-        </svg>
-       </div>
-       <h3 class="font-medium" style="color: var(--beige);">Econometric Analysis</h3>
-      </div>
-      <div class="glow-hover rounded-2xl p-6 text-center transition-all" style="background: rgba(16, 86, 102, 0.3); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);">
-        <svg class="w-6 h-6" style="color: var(--lavender);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-        </svg>
-       </div>
-       <h3 class="font-medium" style="color: var(--beige);">Time Series Modeling (R)</h3>
-      </div>
-      <div class="glow-hover rounded-2xl p-6 text-center transition-all" style="background: rgba(16, 86, 102, 0.3); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);">
-        <svg class="w-6 h-6" style="color: var(--lavender);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-        </svg>
-       </div>
-       <h3 class="font-medium" style="color: var(--beige);">Data Visualization (Power BI)</h3>
-      </div>
-      <div class="glow-hover rounded-2xl p-6 text-center transition-all" style="background: rgba(16, 86, 102, 0.3); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);">
-        <svg class="w-6 h-6" style="color: var(--lavender);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-       </div>
-       <h3 class="font-medium" style="color: var(--beige);">Market Research</h3>
-      </div>
-      <div class="glow-hover rounded-2xl p-6 text-center transition-all" style="background: rgba(16, 86, 102, 0.3); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);">
-        <svg class="w-6 h-6" style="color: var(--lavender);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-       </div>
-       <h3 class="font-medium" style="color: var(--beige);">Policy Analysis</h3>
-      </div>
-      <div class="glow-hover rounded-2xl p-6 text-center transition-all" style="background: rgba(16, 86, 102, 0.3); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);">
-        <svg class="w-6 h-6" style="color: var(--lavender);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-       </div>
-       <h3 class="font-medium" style="color: var(--beige);">Microsoft Office Suite</h3>
-      </div>
-     </div>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- Creative Section -->
-   <section id="creative" class="py-24 px-6 relative overflow-hidden">
-    <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent, rgba(186, 176, 200, 0.05), transparent);"></div>
-    <div class="max-w-5xl mx-auto relative z-10">
-     <h2 class="font-serif text-4xl md:text-5xl text-center mb-6 text-gradient">Music &amp; Creative Expression</h2>
-     <p class="text-center mb-16 max-w-2xl mx-auto font-serif italic text-xl" style="color: var(--lavender);">Where emotions find their melody</p>
-     <div class="grid md:grid-cols-2 gap-8">
-      <div class="rounded-2xl p-8" style="background: linear-gradient(135deg, rgba(186, 176, 200, 0.1), rgba(16, 86, 102, 0.2)); border: 1px solid rgba(186, 176, 200, 0.2);">
-       <div class="w-16 h-16 mb-6 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--lavender), rgba(186, 176, 200, 0.5));">
-        <svg class="w-8 h-8" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-        </svg>
-       </div>
-       <h3 class="font-serif text-2xl font-semibold mb-4" style="color: var(--beige);">Singer-Songwriter</h3>
-       <p class="mb-6" style="color: var(--mist); opacity: 0.85;">Crafting melodies that capture the nuances of human emotion — from quiet introspection to passionate expression.</p>
-       <div class="space-y-3">
-        <p class="text-sm" style="color: var(--lavender);">✦ Original compositions</p>
-        <p class="text-sm" style="color: var(--lavender);">✦ Lyrical storytelling</p>
-        <p class="text-sm" style="color: var(--lavender);">✦ Aspiring music producer</p>
-       </div>
-      </div>
-      <div class="rounded-2xl p-8" style="background: linear-gradient(135deg, rgba(16, 86, 102, 0.2), rgba(186, 176, 200, 0.1)); border: 1px solid rgba(186, 176, 200, 0.2);">
-       <div class="w-16 h-16 mb-6 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--teal), var(--lavender));">
-        <svg class="w-8 h-8" style="color: var(--midnight);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-        </svg>
-       </div>
-       <h3 class="font-serif text-2xl font-semibold mb-4" style="color: var(--beige);">Poetry &amp; Writing</h3>
-       <p class="mb-6" style="color: var(--mist); opacity: 0.85;">Words become vessels for exploring the depths of experience — love, loss, growth, and the beautiful complexity of being human.</p>
-       <div class="space-y-3">
-        <p class="text-sm" style="color: var(--lavender);">✦ Published poet</p>
-        <p class="text-sm" style="color: var(--lavender);">✦ Themes of love &amp; longing</p>
-        <p class="text-sm" style="color: var(--lavender);">✦ Emotional exploration</p>
-       </div>
-      </div>
-     </div><!-- Audio Placeholder -->
-     <div class="mt-12 rounded-2xl p-8 text-center" style="background: rgba(11, 29, 42, 0.6); border: 1px solid rgba(186, 176, 200, 0.15);">
-      <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center animate-float" style="background: linear-gradient(135deg, var(--lavender), var(--teal));">
-       <svg class="w-10 h-10" style="color: var(--midnight);" fill="currentColor" viewbox="0 0 24 24"><path d="M8 5v14l11-7z" />
-       </svg>
-      </div>
-      <h3 class="font-serif text-xl mb-2" style="color: var(--beige);">Coming Soon</h3>
-      <p style="color: var(--mist); opacity: 0.7;">Original music and creative releases</p>
-     </div>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- Activities Section -->
-   <section id="activities" class="py-24 px-6">
-    <div class="max-w-5xl mx-auto">
-     <h2 class="font-serif text-4xl md:text-5xl text-center mb-16 text-gradient">Experience &amp; Activities</h2>
-     <div class="grid md:grid-cols-3 gap-6">
-      <div class="card-hover rounded-2xl p-6" style="background: rgba(247, 244, 213, 0.06); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);"><span class="text-2xl">🌸</span>
-       </div>
-       <h3 class="font-serif text-lg font-semibold mb-2" style="color: var(--beige);">Namaste Japan</h3>
-       <p class="text-sm" style="color: var(--mist); opacity: 0.7;">Volunteer Event — Cultural exchange and community engagement</p>
-      </div>
-      <div class="card-hover rounded-2xl p-6" style="background: rgba(247, 244, 213, 0.06); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);"><span class="text-2xl">🌍</span>
-       </div>
-       <h3 class="font-serif text-lg font-semibold mb-2" style="color: var(--beige);">Global Development Pitch</h3>
-       <p class="text-sm" style="color: var(--mist); opacity: 0.7;">Event participation — Presenting development solutions</p>
-      </div>
-      <div class="card-hover rounded-2xl p-6" style="background: rgba(247, 244, 213, 0.06); border: 1px solid rgba(186, 176, 200, 0.15);">
-       <div class="w-12 h-12 mb-4 rounded-xl flex items-center justify-center" style="background: rgba(186, 176, 200, 0.2);"><span class="text-2xl">📊</span>
-       </div>
-       <h3 class="font-serif text-lg font-semibold mb-2" style="color: var(--beige);">Public Policy Data Workshop</h3>
-       <p class="text-sm" style="color: var(--mist); opacity: 0.7;">Skills development — Data-driven policy analysis</p>
-      </div>
-     </div>
-    </div>
-   </section>
-   <div class="section-divider max-w-4xl mx-auto"></div><!-- Contact Section -->
-   <section id="contact" class="py-24 px-6">
-    <div class="max-w-3xl mx-auto text-center">
-     <h2 class="font-serif text-4xl md:text-5xl mb-6 text-gradient">Let's Connect</h2>
-     <p id="contact-message" class="text-lg mb-12 max-w-xl mx-auto" style="color: var(--mist); opacity: 0.85;">Open to collaborations, research opportunities, and creative conversations.</p>
-     <div class="flex flex-col sm:flex-row justify-center gap-6 mb-12"><a href="mailto:yt48408@gmail.com" class="btn-primary px-8 py-4 rounded-full font-medium inline-flex items-center justify-center gap-3">
-       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-       </svg><span id="contact-email-display">yt48408@gmail.com</span> </a> <a href="https://www.linkedin.com/in/yashvi-tyagi-720925337" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-full font-medium inline-flex items-center justify-center gap-3 border transition-all hover:scale-105" style="border-color: var(--lavender); color: var(--lavender);">
-       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-       </svg> LinkedIn </a>
-     </div>
-     <p class="font-serif text-xl italic" style="color: var(--lavender); opacity: 0.8;">"Every connection is a story waiting to unfold."</p>
-    </div>
-   </section><!-- Footer -->
-   <footer class="py-8 px-6 text-center" style="border-top: 1px solid rgba(186, 176, 200, 0.1);">
-    <p class="text-sm" style="color: var(--mist); opacity: 0.5;">© 2025 Yashvi Tyagi. Crafted with curiosity and care.</p>
-   </footer><!-- Modals -->
-   <div id="modal1" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
-    <div class="modal-overlay absolute inset-0" onclick="closeModal('modal1')"></div>
-    <div class="relative max-w-2xl w-full rounded-3xl p-8 animate-modal" style="background: linear-gradient(180deg, #0f2635, var(--midnight)); border: 1px solid rgba(186, 176, 200, 0.2);"><button onclick="closeModal('modal1')" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(186, 176, 200, 0.1);">
-      <svg class="w-5 h-5" style="color: var(--mist);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg></button>
-     <h3 class="font-serif text-3xl font-semibold mb-2" style="color: var(--beige);">Arunachal Pradesh Development Report</h3>
-     <p class="mb-6" style="color: var(--lavender);">2000–2024 Comprehensive Analysis</p>
-     <div class="space-y-4" style="color: var(--mist); opacity: 0.9;">
-      <p>A detailed examination of Arunachal Pradesh's development trajectory over nearly two and a half decades, providing insights into regional growth patterns and policy effectiveness.</p>
-      <div class="pt-4 border-t" style="border-color: rgba(186, 176, 200, 0.1);">
-       <h4 class="font-semibold mb-3" style="color: var(--lavender);">Key Components:</h4>
-       <ul class="space-y-2 ml-4">
-        <li>• Comparative state development analysis across multiple indicators</li>
-        <li>• Sectoral growth evaluation (agriculture, infrastructure, education, healthcare)</li>
-        <li>• Data interpretation and visualization of development trends</li>
-        <li>• Policy recommendations based on empirical findings</li>
-        <li>• Identification of growth catalysts and barriers</li>
-       </ul>
-      </div>
-     </div>
-    </div>
-   </div>
-   <div id="modal2" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
-    <div class="modal-overlay absolute inset-0" onclick="closeModal('modal2')"></div>
-    <div class="relative max-w-2xl w-full rounded-3xl p-8 animate-modal" style="background: linear-gradient(180deg, #0f2635, var(--midnight)); border: 1px solid rgba(186, 176, 200, 0.2);"><button onclick="closeModal('modal2')" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(186, 176, 200, 0.1);">
-      <svg class="w-5 h-5" style="color: var(--mist);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg></button>
-     <h3 class="font-serif text-3xl font-semibold mb-2" style="color: var(--beige);">Impact of Short-Form Digital Content on Attention</h3>
-     <p class="mb-6" style="color: var(--lavender);">Behavioral Research Study</p>
-     <div class="space-y-4" style="color: var(--mist); opacity: 0.9;">
-      <p>An empirical investigation into how short-form video content consumption affects attention spans and productivity patterns among young adults.</p>
-      <div class="pt-4 border-t" style="border-color: rgba(186, 176, 200, 0.1);">
-       <h4 class="font-semibold mb-3" style="color: var(--lavender);">Methodology &amp; Findings:</h4>
-       <ul class="space-y-2 ml-4">
-        <li>• Survey-based behavioral research design</li>
-        <li>• SPSS statistical analysis for pattern identification</li>
-        <li>• Excel correlation analysis between consumption and productivity metrics</li>
-        <li>• Insights into digital consumption habits and cognitive effects</li>
-        <li>• Recommendations for balanced digital engagement</li>
-       </ul>
-      </div>
-     </div>
-    </div>
-   </div>
-   <div id="modal3" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
-    <div class="modal-overlay absolute inset-0" onclick="closeModal('modal3')"></div>
-    <div class="relative max-w-2xl w-full rounded-3xl p-8 animate-modal" style="background: linear-gradient(180deg, #0f2635, var(--midnight)); border: 1px solid rgba(186, 176, 200, 0.2);"><button onclick="closeModal('modal3')" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(186, 176, 200, 0.1);">
-      <svg class="w-5 h-5" style="color: var(--mist);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg></button>
-     <h3 class="font-serif text-3xl font-semibold mb-2" style="color: var(--beige);">India's Foreign Exchange Management Framework</h3>
-     <p class="mb-6" style="color: var(--lavender);">Policy Analysis</p>
-     <div class="space-y-4" style="color: var(--mist); opacity: 0.9;">
-      <p>A comprehensive analysis of India's foreign exchange management evolution, examining policy transitions and their impact on economic stability.</p>
-      <div class="pt-4 border-t" style="border-color: rgba(186, 176, 200, 0.1);">
-       <h4 class="font-semibold mb-3" style="color: var(--lavender);">Research Scope:</h4>
-       <ul class="space-y-2 ml-4">
-        <li>• RBI secondary data analysis and interpretation</li>
-        <li>• Comparative study of different policy phases (FERA to FEMA)</li>
-        <li>• Assessment of financial stability indicators</li>
-        <li>• Impact evaluation on trade and capital flows</li>
-        <li>• Policy effectiveness measurement and recommendations</li>
-       </ul>
-      </div>
-     </div>
-    </div>
-   </div>
-   <div id="modal4" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
-    <div class="modal-overlay absolute inset-0" onclick="closeModal('modal4')"></div>
-    <div class="relative max-w-2xl w-full rounded-3xl p-8 animate-modal" style="background: linear-gradient(180deg, #0f2635, var(--midnight)); border: 1px solid rgba(186, 176, 200, 0.2);"><button onclick="closeModal('modal4')" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(186, 176, 200, 0.1);">
-      <svg class="w-5 h-5" style="color: var(--mist);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg></button>
-     <h3 class="font-serif text-3xl font-semibold mb-2" style="color: var(--beige);">"Unbreakable Bonds"</h3>
-     <p class="mb-6" style="color: var(--lavender);">Published in Ecobizz Magazine — February 2025</p>
-     <div class="space-y-4" style="color: var(--mist); opacity: 0.9;">
-      <p class="font-serif italic text-lg" style="color: var(--lavender);">"Poetry is the language of the heart when words alone fall short."</p>
-      <p>A collection of poems exploring the profound nature of human connections — the threads that bind us through time, distance, and circumstance.</p>
-      <div class="pt-4 border-t" style="border-color: rgba(186, 176, 200, 0.1);">
-       <h4 class="font-semibold mb-3" style="color: var(--lavender);">Themes Explored:</h4>
-       <ul class="space-y-2 ml-4">
-        <li>• The enduring nature of love across time</li>
-        <li>• Longing and the beauty of absence</li>
-        <li>• Human resilience in connection</li>
-        <li>• The quiet strength of emotional bonds</li>
-       </ul>
-      </div>
-     </div>
-    </div>
-   </div>
-   <div id="modal5" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
-    <div class="modal-overlay absolute inset-0" onclick="closeModal('modal5')"></div>
-    <div class="relative max-w-2xl w-full rounded-3xl p-8 animate-modal" style="background: linear-gradient(180deg, #0f2635, var(--midnight)); border: 1px solid rgba(186, 176, 200, 0.2);"><button onclick="closeModal('modal5')" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(186, 176, 200, 0.1);">
-      <svg class="w-5 h-5" style="color: var(--mist);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg></button>
-     <h3 class="font-serif text-3xl font-semibold mb-2" style="color: var(--beige);">Market Research Intern</h3>
-     <p class="mb-6" style="color: var(--lavender);">First Contact (FC)</p>
-     <div class="space-y-4" style="color: var(--mist); opacity: 0.9;">
-      <p>Contributed to strategic market research initiatives, bridging data analysis with actionable business insights.</p>
-      <div class="pt-4 border-t" style="border-color: rgba(186, 176, 200, 0.1);">
-       <h4 class="font-semibold mb-3" style="color: var(--lavender);">Key Responsibilities:</h4>
-       <ul class="space-y-2 ml-4">
-        <li>• Conducted comprehensive user and market research studies</li>
-        <li>• Analyzed engagement trends and consumer behavior patterns</li>
-        <li>• Assisted in survey design, deployment, and data analysis</li>
-        <li>• Supported strategic decision-making through detailed reports</li>
-        <li>• Translated complex data into actionable recommendations</li>
-       </ul>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div>
-  <script>
-    // Default configuration
-    const defaultConfig = {
-      hero_name: 'Yashvi Tyagi',
-      hero_tagline: '"Where Data Connects Dreams."',
-      hero_subtitle: 'Economics student, researcher, and music creator exploring human stories through data and sound.',
-      about_title: 'About Me',
-      contact_email: 'yt48408@gmail.com',
-      contact_message: 'Open to collaborations, research opportunities, and creative conversations.',
-      background_color: '#0B1D2A',
-      surface_color: '#105666',
-      text_color: '#EAE6F2',
-      accent_color: '#BAB0C8',
-      card_color: '#F7F4D5',
-      font_family: 'DM Sans',
-      font_size: 16
-    };
-    
-    // Modal functions
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-    
-    // Smooth scroll function
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-    
-    // Close modal on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        ['modal1', 'modal2', 'modal3', 'modal4', 'modal5'].forEach(closeModal);
-      }
-    });
-    
-    // Element SDK integration
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange: async (config) => {
-          const c = { ...defaultConfig, ...config };
-          
-          // Update text content
-          document.getElementById('hero-name').textContent = c.hero_name;
-          document.getElementById('hero-tagline').textContent = c.hero_tagline;
-          document.getElementById('hero-subtitle').textContent = c.hero_subtitle;
-          document.getElementById('about-title').textContent = c.about_title;
-          document.getElementById('contact-email-display').textContent = c.contact_email;
-          document.getElementById('contact-message').textContent = c.contact_message;
-          
-          // Update email link
-          const emailLink = document.querySelector('a[href^="mailto:"]');
-          if (emailLink) {
-            emailLink.href = `mailto:${c.contact_email}`;
-          }
-          
-          // Update colors
-          document.documentElement.style.setProperty('--midnight', c.background_color);
-          document.documentElement.style.setProperty('--teal', c.surface_color);
-          document.documentElement.style.setProperty('--mist', c.text_color);
-          document.documentElement.style.setProperty('--lavender', c.accent_color);
-          document.documentElement.style.setProperty('--beige', c.card_color);
-          
-          // Update font
-          const baseFontStack = "'DM Sans', sans-serif";
-          document.body.style.fontFamily = c.font_family ? `${c.font_family}, ${baseFontStack}` : baseFontStack;
-          
-          // Update font size
-          const baseSize = c.font_size || 16;
-          document.body.style.fontSize = `${baseSize}px`;
-        },
-        mapToCapabilities: (config) => {
-          const c = { ...defaultConfig, ...config };
-          return {
-            recolorables: [
-              {
-                get: () => c.background_color,
-                set: (value) => window.elementSdk.setConfig({ background_color: value })
-              },
-              {
-                get: () => c.surface_color,
-                set: (value) => window.elementSdk.setConfig({ surface_color: value })
-              },
-              {
-                get: () => c.text_color,
-                set: (value) => window.elementSdk.setConfig({ text_color: value })
-              },
-              {
-                get: () => c.accent_color,
-                set: (value) => window.elementSdk.setConfig({ accent_color: value })
-              },
-              {
-                get: () => c.card_color,
-                set: (value) => window.elementSdk.setConfig({ card_color: value })
-              }
-            ],
-            borderables: [],
-            fontEditable: {
-              get: () => c.font_family,
-              set: (value) => window.elementSdk.setConfig({ font_family: value })
-            },
-            fontSizeable: {
-              get: () => c.font_size,
-              set: (value) => window.elementSdk.setConfig({ font_size: value })
-            }
-          };
-        },
-        mapToEditPanelValues: (config) => {
-          const c = { ...defaultConfig, ...config };
-          return new Map([
-            ['hero_name', c.hero_name],
-            ['hero_tagline', c.hero_tagline],
-            ['hero_subtitle', c.hero_subtitle],
-            ['about_title', c.about_title],
-            ['contact_email', c.contact_email],
-            ['contact_message', c.contact_message]
-          ]);
-        }
-      });
-    }
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d591d416592b7e9',t:'MTc3MjM3ODA5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yashvi Tyagi | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ---------- COLOR PALETTE ---------- */
+:root{
+  --primary:#1F2A44;
+  --background:#F4F1EC;
+  --accent:#B8A9C9;
+  --rose:#D48A8A;
+  --secondary:#6E7A8A;
+}
+
+/* ---------- GLOBAL ---------- */
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--background);
+  color:var(--primary);
+  line-height:1.6;
+}
+
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+}
+
+section{
+  padding:70px 10%;
+}
+
+button{
+  background:var(--rose);
+  border:none;
+  padding:12px 20px;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  text-align:center;
+  padding:120px 10%;
+  background:linear-gradient(135deg,#1F2A44,#6E7A8A);
+  color:white;
+}
+
+.hero h1{
+  font-size:42px;
+}
+
+.tagline{
+  font-size:20px;
+  opacity:.9;
+}
+
+/* ---------- CARDS ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* ---------- POPUP ---------- */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  max-width:600px;
+}
+
+/* ---------- SKILLS ---------- */
+.skill{
+  background:var(--accent);
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:var(--primary);
+  color:white;
+  text-align:center;
+  padding:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Yashvi Tyagi</h1>
+<p class="tagline">Where Data Connects Dreams</p>
+<p>Economics student, researcher, and music creator exploring human stories through data and sound.</p>
+</section>
+
+<!-- ABOUT -->
+<section>
+<h2>About Me</h2>
+<p>
+Economics (Hons.) student interested in policy, research, and financial systems.
+I explore the intersection of analytical thinking and creative expression through
+writing and music.
+</p>
+</section>
+
+<!-- RESEARCH -->
+<section>
+<h2>Research & Projects</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openModal('m1')">
+<h3>Arunachal Pradesh Development Report</h3>
+<p>Comparative state development analysis.</p>
+</div>
+
+<div class="card" onclick="openModal('m2')">
+<h3>Digital Content & Attention</h3>
+<p>Behavioral research using SPSS & Excel.</p>
+</div>
+
+<div class="card" onclick="openModal('m3')">
+<h3>Foreign Exchange Framework</h3>
+<p>RBI data and macroeconomic evaluation.</p>
+</div>
+
+<div class="card" onclick="openModal('m4')">
+<h3>Unbreakable Bonds</h3>
+<p>Published poetry contribution.</p>
+</div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section>
+<h2>Skills</h2>
+<div class="grid">
+<div class="skill">Econometric Analysis</div>
+<div class="skill">Time Series (R)</div>
+<div class="skill">Power BI</div>
+<div class="skill">Policy Analysis</div>
+<div class="skill">Market Research</div>
+<div class="skill">MS Office</div>
+</div>
+</section>
+
+<!-- MUSIC -->
+<section>
+<h2>Music & Creative Expression</h2>
+<p>
+Singer-songwriter and aspiring music producer exploring emotions,
+stories, and identity through sound and lyrics.
+</p>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+<h2>Professional Experience</h2>
+<div class="card">
+<h3>Market Research Intern — First Contact</h3>
+<p>
+Conducted user research, analyzed engagement trends,
+and supported strategic reporting.
+</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section>
+<h2>Contact</h2>
+<p>Email: yt48408@gmail.com</p>
+<p>LinkedIn: www.linkedin.com/in/yashvi-tyagi-720925337</p>
+<p>Open to collaborations, research opportunities, and creative conversations.</p>
+</section>
+
+<footer>
+<p>© 2026 Yashvi Tyagi</p>
+</footer>
+
+<!-- POPUPS -->
+<div id="m1" class="modal"><div class="modal-content" onclick="closeModal()">Detailed development analysis with sector-wise evaluation.</div></div>
+<div id="m2" class="modal"><div class="modal-content" onclick="closeModal()">Survey-based research analyzing attention patterns.</div></div>
+<div id="m3" class="modal"><div class="modal-content" onclick="closeModal()">Policy phase comparison using RBI data.</div></div>
+<div id="m4" class="modal"><div class="modal-content" onclick="closeModal()">Poetry exploring love and longing themes.</div></div>
+
+<script>
+function openModal(id){
+  document.getElementById(id).style.display="flex";
+}
+function closeModal(){
+  document.querySelectorAll('.modal').forEach(m=>m.style.display="none");
+}
+</script>
+
+</body>
 </html>
