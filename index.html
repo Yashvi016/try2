@@ -1,161 +1,734 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yashvi Tyagi | Where Data Connects Dreams</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --midnight: #1F2A44;
-            --warm-mist: #F4F1EC;
-            --lavender: #B8A9C9;
-            --rose: #D48A8A;
-            --slate: #6E7A8A;
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yashvi Tyagi</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#1F2A44',
+            mist: '#F4F1EC',
+            lavender: '#B8A9C9',
+            rose: '#D48A8A',
+            slate: '#6E7A8A'
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['DM Sans', 'system-ui', 'sans-serif']
+          }
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--warm-mist);
-            color: var(--midnight);
-            scroll-behavior: smooth;
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .modal-backdrop { backdrop-filter: blur(8px); }
+    .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-6px); }
+    .gradient-text {
+      background: linear-gradient(135deg, #1F2A44 0%, #B8A9C9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-gradient {
+      background: linear-gradient(180deg, #F4F1EC 0%, #E8E4DE 50%, #F4F1EC 100%);
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(184, 169, 201, 0.6);
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #B8A9C9, transparent);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-mist font-sans text-midnight overflow-auto">
+  <div id="app-wrapper" class="w-full min-h-full"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-mist/90 backdrop-blur-md border-b border-lavender/20">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"><a href="#hero" class="font-serif text-xl font-semibold text-midnight hover:text-lavender transition-colors">YT</a>
+     <div class="hidden md:flex items-center gap-8"><a href="#about" class="text-slate hover:text-midnight transition-colors text-sm tracking-wide">About</a> <a href="#research" class="text-slate hover:text-midnight transition-colors text-sm tracking-wide">Research</a> <a href="#experience" class="text-slate hover:text-midnight transition-colors text-sm tracking-wide">Experience</a> <a href="#music" class="text-slate hover:text-midnight transition-colors text-sm tracking-wide">Creative</a> <a href="#contact" class="text-slate hover:text-midnight transition-colors text-sm tracking-wide">Contact</a>
+     </div><button id="mobile-menu-btn" class="md:hidden text-midnight">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg></button>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-mist border-t border-lavender/20 px-6 py-4">
+     <div class="flex flex-col gap-4"><a href="#about" class="text-slate hover:text-midnight transition-colors">About</a> <a href="#research" class="text-slate hover:text-midnight transition-colors">Research</a> <a href="#experience" class="text-slate hover:text-midnight transition-colors">Experience</a> <a href="#music" class="text-slate hover:text-midnight transition-colors">Creative</a> <a href="#contact" class="text-slate hover:text-midnight transition-colors">Contact</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="hero" class="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden pt-20"><!-- Decorative Stars -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+     <div class="star" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+     <div class="star" style="top: 25%; left: 75%; animation-delay: 0.5s;"></div>
+     <div class="star" style="top: 40%; left: 10%; animation-delay: 1s;"></div>
+     <div class="star" style="top: 60%; left: 85%; animation-delay: 1.5s;"></div>
+     <div class="star" style="top: 75%; left: 30%; animation-delay: 2s;"></div>
+     <div class="star" style="top: 20%; left: 50%; animation-delay: 0.3s;"></div>
+     <div class="star" style="top: 55%; left: 60%; animation-delay: 0.8s;"></div>
+     <div class="star" style="top: 80%; left: 70%; animation-delay: 1.3s;"></div>
+     <div class="star" style="top: 35%; left: 40%; animation-delay: 1.8s;"></div>
+     <div class="star" style="top: 65%; left: 15%; animation-delay: 2.3s;"></div>
+    </div><!-- Abstract Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+     <svg class="w-full h-full" viewbox="0 0 800 600" preserveaspectratio="xMidYMid slice"><defs>
+       <pattern id="dots" x="0" y="0" width="40" height="40" patternunits="userSpaceOnUse">
+        <circle cx="20" cy="20" r="1.5" fill="#1F2A44" />
+       </pattern>
+      </defs> <rect width="100%" height="100%" fill="url(#dots)" />
+     </svg>
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto fade-in">
+     <p class="text-lavender font-sans text-sm tracking-[0.3em] uppercase mb-6">Welcome</p>
+     <h1 id="hero-name" class="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold text-midnight mb-6 leading-tight">Yashvi Tyagi</h1>
+     <p id="hero-tagline" class="font-serif text-2xl md:text-3xl italic text-lavender mb-6">"Where Data Connects Dreams."</p>
+     <p id="hero-subtitle" class="text-slate text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">Economics student, researcher, and music creator exploring human stories through data and sound.</p>
+     <div class="flex flex-wrap justify-center gap-4"><a href="#research" class="px-8 py-3 bg-midnight text-mist rounded-full font-medium hover:bg-midnight/90 transition-all hover:shadow-lg hover:shadow-midnight/20"> View Research </a> <a href="#music" class="px-8 py-3 bg-rose text-white rounded-full font-medium hover:bg-rose/90 transition-all hover:shadow-lg hover:shadow-rose/20"> Creative Space </a> <a href="#about" class="px-8 py-3 border-2 border-midnight text-midnight rounded-full font-medium hover:bg-midnight hover:text-mist transition-all"> About Me </a>
+     </div>
+    </div><!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+     <svg class="w-6 h-6 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+     </svg>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="section-divider mb-16"></div>
+     <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center"><!-- Image Column -->
+      <div class="relative">
+       <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-lavender/30 to-rose/20 overflow-hidden shadow-xl"><!-- Decorative Abstract Image -->
+        <svg class="w-full h-full" viewbox="0 0 400 500" preserveaspectratio="xMidYMid slice"><defs>
+          <lineargradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+           <stop offset="0%" style="stop-color:#B8A9C9;stop-opacity:0.4" />
+           <stop offset="100%" style="stop-color:#D48A8A;stop-opacity:0.3" />
+          </lineargradient>
+          <lineargradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+           <stop offset="0%" style="stop-color:#1F2A44;stop-opacity:0.1" />
+           <stop offset="100%" style="stop-color:#B8A9C9;stop-opacity:0.2" />
+          </lineargradient>
+         </defs> <rect width="400" height="500" fill="#F4F1EC" /> <circle cx="200" cy="180" r="120" fill="url(#grad1)" /> <circle cx="280" cy="280" r="80" fill="url(#grad2)" /> <circle cx="120" cy="350" r="100" fill="url(#grad1)" opacity="0.5" /> <path d="M100 450 Q200 350 300 450" stroke="#B8A9C9" stroke-width="2" fill="none" opacity="0.5" /> <path d="M50 400 Q200 300 350 400" stroke="#D48A8A" stroke-width="1.5" fill="none" opacity="0.4" /> <!-- Book/Study Icon --> <g transform="translate(160, 140)" opacity="0.6">
+          <rect x="0" y="20" width="80" height="60" rx="4" fill="#1F2A44" opacity="0.2" />
+          <rect x="10" y="10" width="60" height="50" rx="3" fill="#1F2A44" opacity="0.3" />
+          <line x1="25" y1="25" x2="55" y2="25" stroke="#F4F1EC" stroke-width="2" />
+          <line x1="25" y1="35" x2="50" y2="35" stroke="#F4F1EC" stroke-width="2" />
+          <line x1="25" y1="45" x2="45" y2="45" stroke="#F4F1EC" stroke-width="2" />
+         </g>
+        </svg>
+       </div><!-- Decorative Elements -->
+       <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-lavender/20 rounded-full blur-2xl"></div>
+       <div class="absolute -top-6 -left-6 w-24 h-24 bg-rose/20 rounded-full blur-xl"></div>
+      </div><!-- Content Column -->
+      <div>
+       <p class="text-lavender font-sans text-sm tracking-[0.2em] uppercase mb-4">Get to Know Me</p>
+       <h2 id="about-title" class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-8">About Me</h2>
+       <div class="space-y-5 text-slate leading-relaxed">
+        <p>I'm an <span class="text-midnight font-medium">Economics Honours undergraduate</span> with a deep fascination for the stories hidden within data. My academic journey centers on understanding policy frameworks, financial systems, and the intricate ways economic decisions shape human lives.</p>
+        <p>Beyond the analytical realm, I find expression through <span class="text-midnight font-medium">music and poetry</span>. As a singer-songwriter and aspiring music producer, I explore emotional landscapes through sound — believing that data and art are simply different languages for the same human truths.</p>
+        <p>My work bridges these worlds: rigorous research methodology meets creative introspection. Whether I'm analyzing development metrics or crafting lyrics, I'm always seeking to understand the deeper patterns that connect us all.</p>
+       </div>
+       <div class="mt-8 flex flex-wrap gap-3"><span class="px-4 py-2 bg-lavender/20 text-midnight rounded-full text-sm">Researcher</span> <span class="px-4 py-2 bg-rose/20 text-midnight rounded-full text-sm">Writer</span> <span class="px-4 py-2 bg-midnight/10 text-midnight rounded-full text-sm">Music Creator</span> <span class="px-4 py-2 bg-lavender/20 text-midnight rounded-full text-sm">Policy Enthusiast</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Research Section -->
+   <section id="research" class="py-24 px-6 bg-gradient-to-b from-mist to-white">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16">
+      <p class="text-lavender font-sans text-sm tracking-[0.2em] uppercase mb-4">Academic Work</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-4">Research &amp; Projects</h2>
+      <p class="text-slate max-w-2xl mx-auto">Exploring complex questions through rigorous analysis and thoughtful inquiry.</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Project Card 1 -->
+      <div class="card-hover bg-white rounded-3xl p-8 shadow-lg shadow-midnight/5 cursor-pointer border border-lavender/10" onclick="openModal('modal1')">
+       <div class="w-14 h-14 bg-lavender/20 rounded-2xl flex items-center justify-center mb-6">
+        <svg class="w-7 h-7 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-2xl font-semibold text-midnight mb-3">Arunachal Pradesh Development Report</h3>
+       <p class="text-slate mb-4">Comprehensive analysis of regional development from 2000–2024, examining growth trajectories and policy impacts.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">Development Economics</span> <span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">Policy Analysis</span>
+       </div>
+       <p class="text-rose text-sm mt-4 font-medium">Click to explore →</p>
+      </div><!-- Project Card 2 -->
+      <div class="card-hover bg-white rounded-3xl p-8 shadow-lg shadow-midnight/5 cursor-pointer border border-lavender/10" onclick="openModal('modal2')">
+       <div class="w-14 h-14 bg-rose/20 rounded-2xl flex items-center justify-center mb-6">
+        <svg class="w-7 h-7 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-2xl font-semibold text-midnight mb-3">Short-Form Content &amp; Attention</h3>
+       <p class="text-slate mb-4">Survey-based research exploring how digital content consumption patterns affect cognitive attention spans.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">Behavioral Research</span> <span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">SPSS Analysis</span>
+       </div>
+       <p class="text-rose text-sm mt-4 font-medium">Click to explore →</p>
+      </div><!-- Project Card 3 -->
+      <div class="card-hover bg-white rounded-3xl p-8 shadow-lg shadow-midnight/5 cursor-pointer border border-lavender/10" onclick="openModal('modal3')">
+       <div class="w-14 h-14 bg-midnight/10 rounded-2xl flex items-center justify-center mb-6">
+        <svg class="w-7 h-7 text-midnight" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-2xl font-semibold text-midnight mb-3">India's Foreign Exchange Framework</h3>
+       <p class="text-slate mb-4">Analysis of RBI data examining policy evolution and its impact on financial stability across different phases.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">Financial Economics</span> <span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">RBI Data</span>
+       </div>
+       <p class="text-rose text-sm mt-4 font-medium">Click to explore →</p>
+      </div><!-- Project Card 4 -->
+      <div class="card-hover bg-white rounded-3xl p-8 shadow-lg shadow-midnight/5 cursor-pointer border border-lavender/10" onclick="openModal('modal4')">
+       <div class="w-14 h-14 bg-lavender/20 rounded-2xl flex items-center justify-center mb-6">
+        <svg class="w-7 h-7 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-2xl font-semibold text-midnight mb-3">Published: "Unbreakable Bonds"</h3>
+       <p class="text-slate mb-4">Poetry published in Ecobizz Magazine (Feb 2025), exploring themes of love, longing, and human connection.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">Creative Writing</span> <span class="px-3 py-1 bg-mist text-slate text-xs rounded-full">Published Work</span>
+       </div>
+       <p class="text-rose text-sm mt-4 font-medium">Click to explore →</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Professional Experience Section -->
+   <section id="experience" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="section-divider mb-16"></div>
+     <div class="grid lg:grid-cols-5 gap-12 items-start">
+      <div class="lg:col-span-2">
+       <p class="text-lavender font-sans text-sm tracking-[0.2em] uppercase mb-4">Career</p>
+       <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-6">Professional Experience</h2>
+       <p class="text-slate leading-relaxed">Building practical skills through hands-on experience in research and analysis.</p>
+      </div>
+      <div class="lg:col-span-3">
+       <div class="bg-white rounded-3xl p-8 shadow-lg shadow-midnight/5 border border-lavender/10">
+        <div class="flex items-start gap-4 mb-6">
+         <div class="w-12 h-12 bg-rose/20 rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+         </div>
+         <div>
+          <h3 class="font-serif text-2xl font-semibold text-midnight">Market Research Intern</h3>
+          <p class="text-lavender font-medium">First Contact</p>
+         </div>
+        </div>
+        <ul class="space-y-3 text-slate">
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>Conducted comprehensive user and market research to identify trends and opportunities</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>Analyzed engagement metrics and consumer behavior patterns</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>Assisted in survey design and data collection methodology</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>Contributed to decision-making reports with actionable insights</span></li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section class="py-24 px-6 bg-gradient-to-b from-white to-mist">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16">
+      <p class="text-lavender font-sans text-sm tracking-[0.2em] uppercase mb-4">Capabilities</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-4">Skills &amp; Expertise</h2>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"><!-- Skill Card 1 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 text-center card-hover">
+       <div class="w-12 h-12 bg-lavender/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-lg font-semibold text-midnight mb-1">Econometric Analysis</h3>
+       <p class="text-slate text-sm">Statistical modeling &amp; inference</p>
+      </div><!-- Skill Card 2 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 text-center card-hover">
+       <div class="w-12 h-12 bg-rose/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-lg font-semibold text-midnight mb-1">Time Series Modeling</h3>
+       <p class="text-slate text-sm">R Programming</p>
+      </div><!-- Skill Card 3 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 text-center card-hover">
+       <div class="w-12 h-12 bg-midnight/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-midnight" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-lg font-semibold text-midnight mb-1">Data Visualization</h3>
+       <p class="text-slate text-sm">Power BI &amp; Excel</p>
+      </div><!-- Skill Card 4 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 text-center card-hover">
+       <div class="w-12 h-12 bg-lavender/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-lg font-semibold text-midnight mb-1">Market Research</h3>
+       <p class="text-slate text-sm">Survey design &amp; analysis</p>
+      </div><!-- Skill Card 5 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 text-center card-hover">
+       <div class="w-12 h-12 bg-rose/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-lg font-semibold text-midnight mb-1">Policy Analysis</h3>
+       <p class="text-slate text-sm">Framework evaluation</p>
+      </div><!-- Skill Card 6 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 text-center card-hover">
+       <div class="w-12 h-12 bg-midnight/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-midnight" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-lg font-semibold text-midnight mb-1">Microsoft Office</h3>
+       <p class="text-slate text-sm">Advanced proficiency</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Music & Creative Section -->
+   <section id="music" class="py-24 px-6 relative overflow-hidden"><!-- Decorative Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-midnight/5 via-transparent to-lavender/10"></div>
+    <div class="absolute top-20 right-10 w-64 h-64 bg-rose/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-48 h-48 bg-lavender/20 rounded-full blur-3xl"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
+     <div class="section-divider mb-16"></div>
+     <div class="text-center mb-16">
+      <p class="text-rose font-sans text-sm tracking-[0.2em] uppercase mb-4">Creative Expression</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-4">Music &amp; Poetry</h2>
+      <p class="text-slate max-w-2xl mx-auto italic">"Where words fail, music speaks — and where data ends, art begins."</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Music Card -->
+      <div class="bg-white/80 backdrop-blur rounded-3xl p-8 shadow-xl border border-lavender/20">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 bg-gradient-to-br from-rose to-lavender rounded-2xl flex items-center justify-center">
+         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-serif text-2xl font-semibold text-midnight">Singer-Songwriter</h3>
+         <p class="text-slate">Aspiring Music Producer</p>
+        </div>
+       </div>
+       <p class="text-slate mb-6 leading-relaxed">Music is my emotional outlet — a space where analytical thinking gives way to pure feeling. I craft songs that explore love, identity, and the quiet moments of introspection that define our inner lives.</p><!-- Music Placeholder -->
+       <div class="bg-gradient-to-r from-lavender/20 to-rose/20 rounded-2xl p-6 text-center">
+        <div class="flex items-center justify-center gap-1 mb-3">
+         <div class="w-1 h-8 bg-lavender rounded-full animate-pulse"></div>
+         <div class="w-1 h-12 bg-rose rounded-full animate-pulse" style="animation-delay: 0.1s;"></div>
+         <div class="w-1 h-6 bg-lavender rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+         <div class="w-1 h-10 bg-rose rounded-full animate-pulse" style="animation-delay: 0.3s;"></div>
+         <div class="w-1 h-8 bg-lavender rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+         <div class="w-1 h-14 bg-rose rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+         <div class="w-1 h-6 bg-lavender rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
+        </div>
+        <p class="text-slate text-sm italic">Music releases coming soon...</p>
+       </div>
+      </div><!-- Poetry Card -->
+      <div class="bg-white/80 backdrop-blur rounded-3xl p-8 shadow-xl border border-lavender/20">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 bg-gradient-to-br from-midnight to-lavender rounded-2xl flex items-center justify-center">
+         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-serif text-2xl font-semibold text-midnight">Lyrical Storyteller</h3>
+         <p class="text-slate">Poetry &amp; Creative Writing</p>
+        </div>
+       </div>
+       <p class="text-slate mb-6 leading-relaxed">Through poetry, I explore the nuances of human experience — the unspoken words, the lingering glances, the bittersweet beauty of connection and loss.</p><!-- Poetry Snippet -->
+       <div class="bg-mist rounded-2xl p-6 border-l-4 border-lavender">
+        <p class="font-serif text-midnight italic text-lg leading-relaxed mb-3">"In the space between numbers,<br>
+          where charts cannot reach,<br>
+          there lives a story waiting —<br>
+          a truth only hearts can teach."</p>
+        <p class="text-slate text-sm">— From personal collection</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Activities Section -->
+   <section class="py-24 px-6 bg-gradient-to-b from-mist to-white">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16">
+      <p class="text-lavender font-sans text-sm tracking-[0.2em] uppercase mb-4">Involvement</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-4">Activities &amp; Events</h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6"><!-- Activity 1 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 card-hover">
+       <div class="w-12 h-12 bg-rose/20 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-6 h-6 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Namaste Japan</h3>
+       <p class="text-slate text-sm">Volunteer Event — Cultural exchange and international collaboration initiative.</p>
+      </div><!-- Activity 2 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 card-hover">
+       <div class="w-12 h-12 bg-lavender/20 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-6 h-6 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Global Development Pitch</h3>
+       <p class="text-slate text-sm">Participant — Presenting innovative solutions for sustainable development challenges.</p>
+      </div><!-- Activity 3 -->
+      <div class="bg-white rounded-2xl p-6 shadow-md shadow-midnight/5 border border-lavender/10 card-hover">
+       <div class="w-12 h-12 bg-midnight/10 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-6 h-6 text-midnight" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+       </div>
+       <h3 class="font-serif text-xl font-semibold text-midnight mb-2">Public Policy Workshop</h3>
+       <p class="text-slate text-sm">Attendee — Data-driven approaches to policy analysis and evaluation.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <div class="section-divider mb-16"></div>
+     <div class="text-center">
+      <p class="text-lavender font-sans text-sm tracking-[0.2em] uppercase mb-4">Get in Touch</p>
+      <h2 class="font-serif text-4xl md:text-5xl font-semibold text-midnight mb-6">Let's Connect</h2>
+      <p id="contact-message" class="text-slate text-lg max-w-xl mx-auto mb-10">Open to collaborations, research opportunities, and creative conversations.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12"><!-- Email --> <a id="contact-email-link" href="mailto:yt48408@gmail.com" class="flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all border border-lavender/20 card-hover">
+        <div class="w-10 h-10 bg-rose/20 rounded-xl flex items-center justify-center">
+         <svg class="w-5 h-5 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg>
+        </div><span id="contact-email" class="text-midnight font-medium">yt48408@gmail.com</span> </a> <!-- LinkedIn --> <a href="https://www.linkedin.com/in/yashvi-tyagi-720925337" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all border border-lavender/20 card-hover">
+        <div class="w-10 h-10 bg-midnight/10 rounded-xl flex items-center justify-center">
+         <svg class="w-5 h-5 text-midnight" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+         </svg>
+        </div><span class="text-midnight font-medium">LinkedIn Profile</span> </a>
+      </div><!-- Decorative Quote -->
+      <div class="bg-gradient-to-r from-lavender/10 via-rose/10 to-lavender/10 rounded-3xl p-8 max-w-2xl mx-auto">
+       <p class="font-serif text-2xl text-midnight italic leading-relaxed">"Every dataset tells a story. Every melody holds a truth. Let's discover them together."</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t border-lavender/20">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+     <p class="text-slate text-sm">© 2025 Yashvi Tyagi. All rights reserved.</p>
+     <p class="font-serif text-lavender italic text-sm">Where Data Connects Dreams.</p>
+    </div>
+   </footer><!-- Modals --> <!-- Modal 1: Arunachal Pradesh -->
+   <div id="modal1" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0 bg-midnight/40" onclick="closeModal('modal1')"></div>
+    <div class="relative z-10 flex items-center justify-center min-h-full p-4">
+     <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90%] overflow-y-auto shadow-2xl">
+      <div class="p-8">
+       <div class="flex justify-between items-start mb-6">
+        <div class="w-14 h-14 bg-lavender/20 rounded-2xl flex items-center justify-center">
+         <svg class="w-7 h-7 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+         </svg>
+        </div><button onclick="closeModal('modal1')" class="text-slate hover:text-midnight transition-colors">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+       <h3 class="font-serif text-3xl font-semibold text-midnight mb-2">Arunachal Pradesh Development Report</h3>
+       <p class="text-lavender font-medium mb-6">2000–2024 Comprehensive Analysis</p>
+       <div class="space-y-4 text-slate">
+        <p>This research project provides an in-depth examination of Arunachal Pradesh's development trajectory over two decades, analyzing key indicators across multiple sectors.</p>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Key Components:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Comparative Development Analysis:</strong> Benchmarking against national averages and neighboring states</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Sector Growth Evaluation:</strong> Assessment of agriculture, infrastructure, education, and healthcare</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Policy Recommendations:</strong> Evidence-based suggestions for sustainable development</span></li>
+        </ul>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Methodology:</h4>
+        <p>Utilized secondary data from government sources, applied time-series analysis, and employed comparative economic frameworks to derive meaningful insights.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Modal 2: Attention Research -->
+   <div id="modal2" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0 bg-midnight/40" onclick="closeModal('modal2')"></div>
+    <div class="relative z-10 flex items-center justify-center min-h-full p-4">
+     <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90%] overflow-y-auto shadow-2xl">
+      <div class="p-8">
+       <div class="flex justify-between items-start mb-6">
+        <div class="w-14 h-14 bg-rose/20 rounded-2xl flex items-center justify-center">
+         <svg class="w-7 h-7 text-rose" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+         </svg>
+        </div><button onclick="closeModal('modal2')" class="text-slate hover:text-midnight transition-colors">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+       <h3 class="font-serif text-3xl font-semibold text-midnight mb-2">Impact of Short-Form Digital Content on Attention</h3>
+       <p class="text-lavender font-medium mb-6">Behavioral Research Study</p>
+       <div class="space-y-4 text-slate">
+        <p>An exploratory study examining the relationship between short-form video consumption and attention span in young adults, with implications for educational engagement and cognitive development.</p>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Research Highlights:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-rose rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Survey-Based Research:</strong> Primary data collection from 200+ respondents across demographics</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-rose rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">SPSS &amp; Excel Analysis:</strong> Statistical analysis using correlation and regression models</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-rose rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Behavioral Insights:</strong> Patterns linking consumption habits to focus metrics</span></li>
+        </ul>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Key Findings:</h4>
+        <p>The research revealed significant correlations between daily short-form content consumption and self-reported attention difficulties, particularly among 18-24 year olds.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Modal 3: Forex -->
+   <div id="modal3" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0 bg-midnight/40" onclick="closeModal('modal3')"></div>
+    <div class="relative z-10 flex items-center justify-center min-h-full p-4">
+     <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90%] overflow-y-auto shadow-2xl">
+      <div class="p-8">
+       <div class="flex justify-between items-start mb-6">
+        <div class="w-14 h-14 bg-midnight/10 rounded-2xl flex items-center justify-center">
+         <svg class="w-7 h-7 text-midnight" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div><button onclick="closeModal('modal3')" class="text-slate hover:text-midnight transition-colors">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+       <h3 class="font-serif text-3xl font-semibold text-midnight mb-2">India's Foreign Exchange Management Framework</h3>
+       <p class="text-lavender font-medium mb-6">Financial Policy Analysis</p>
+       <div class="space-y-4 text-slate">
+        <p>A comprehensive study of India's foreign exchange management policies, tracing the evolution from FERA to FEMA and analyzing the impact on economic stability and growth.</p>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Study Components:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-midnight rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">RBI Data Analysis:</strong> Examination of reserve movements and intervention patterns</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-midnight rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Policy Phase Comparison:</strong> Pre and post-liberalization framework analysis</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-midnight rounded-full mt-2 flex-shrink-0"></span> <span><strong class="text-midnight">Financial Stability Evaluation:</strong> Assessment of crisis management mechanisms</span></li>
+        </ul>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Conclusions:</h4>
+        <p>The transition to a more market-oriented forex regime has enhanced India's external sector resilience while maintaining policy flexibility for crisis management.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Modal 4: Published Work -->
+   <div id="modal4" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0 bg-midnight/40" onclick="closeModal('modal4')"></div>
+    <div class="relative z-10 flex items-center justify-center min-h-full p-4">
+     <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90%] overflow-y-auto shadow-2xl">
+      <div class="p-8">
+       <div class="flex justify-between items-start mb-6">
+        <div class="w-14 h-14 bg-lavender/20 rounded-2xl flex items-center justify-center">
+         <svg class="w-7 h-7 text-lavender" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+         </svg>
+        </div><button onclick="closeModal('modal4')" class="text-slate hover:text-midnight transition-colors">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+       <h3 class="font-serif text-3xl font-semibold text-midnight mb-2">"Unbreakable Bonds"</h3>
+       <p class="text-lavender font-medium mb-6">Published in Ecobizz Magazine • February 2025</p>
+       <div class="space-y-4 text-slate">
+        <p>A poetic exploration of love, longing, and the invisible threads that connect human hearts across time and distance.</p>
+        <div class="bg-mist rounded-2xl p-6 border-l-4 border-rose my-6">
+         <p class="font-serif text-midnight italic text-lg leading-relaxed">"Through distances that stretch like endless seas,<br>
+           Through silences that speak of memories,<br>
+           We find the strength in bonds we cannot break —<br>
+           The love we hold, the promises we make."</p>
+         <p class="text-slate text-sm mt-4">— Excerpt from "Unbreakable Bonds"</p>
+        </div>
+        <h4 class="font-serif text-xl text-midnight font-semibold">About the Publication:</h4>
+        <p>Ecobizz Magazine features economics and business perspectives alongside creative content, recognizing that the best insights come from diverse forms of expression.</p>
+        <h4 class="font-serif text-xl text-midnight font-semibold mt-6">Themes Explored:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>The resilience of emotional connections</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>Love as an economic and emotional investment</span></li>
+         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-lavender rounded-full mt-2 flex-shrink-0"></span> <span>The intersection of vulnerability and strength</span></li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Default Configuration
+    const defaultConfig = {
+      hero_name: "Yashvi Tyagi",
+      hero_tagline: '"Where Data Connects Dreams."',
+      hero_subtitle: "Economics student, researcher, and music creator exploring human stories through data and sound.",
+      about_title: "About Me",
+      contact_email: "yt48408@gmail.com",
+      contact_message: "Open to collaborations, research opportunities, and creative conversations.",
+      background_color: "#F4F1EC",
+      text_color: "#1F2A44",
+      accent_color: "#B8A9C9",
+      button_color: "#D48A8A",
+      secondary_text_color: "#6E7A8A",
+      font_family: "Cormorant Garamond",
+      font_size: 16
+    };
+
+    // Modal Functions
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        ['modal1', 'modal2', 'modal3', 'modal4'].forEach(closeModal);
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Element SDK Implementation
+    async function onConfigChange(config) {
+      // Update hero section
+      document.getElementById('hero-name').textContent = config.hero_name || defaultConfig.hero_name;
+      document.getElementById('hero-tagline').textContent = config.hero_tagline || defaultConfig.hero_tagline;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      
+      // Update about section
+      document.getElementById('about-title').textContent = config.about_title || defaultConfig.about_title;
+      
+      // Update contact section
+      const email = config.contact_email || defaultConfig.contact_email;
+      document.getElementById('contact-email').textContent = email;
+      document.getElementById('contact-email-link').href = `mailto:${email}`;
+      document.getElementById('contact-message').textContent = config.contact_message || defaultConfig.contact_message;
+
+      // Apply colors
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const buttonColor = config.button_color || defaultConfig.button_color;
+      const secondaryTextColor = config.secondary_text_color || defaultConfig.secondary_text_color;
+
+      document.documentElement.style.setProperty('--bg-color', bgColor);
+      document.body.style.backgroundColor = bgColor;
+
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontStack = `${fontFamily}, Georgia, serif`;
+      document.querySelectorAll('.font-serif').forEach(el => {
+        el.style.fontFamily = fontStack;
+      });
+
+      // Apply font size scaling
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.querySelectorAll('h1').forEach(el => el.style.fontSize = `${baseSize * 4}px`);
+      document.querySelectorAll('h2').forEach(el => el.style.fontSize = `${baseSize * 2.5}px`);
+      document.querySelectorAll('h3').forEach(el => el.style.fontSize = `${baseSize * 1.5}px`);
+      document.querySelectorAll('p, li, span').forEach(el => {
+        if (!el.closest('h1, h2, h3')) {
+          el.style.fontSize = `${baseSize}px`;
         }
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.button_color || defaultConfig.button_color,
+            set: (value) => {
+              config.button_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ button_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_text_color || defaultConfig.secondary_text_color,
+            set: (value) => {
+              config.secondary_text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ secondary_text_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
+          }
         }
-        .hero-gradient {
-            background: radial-gradient(circle at center, rgba(184, 169, 201, 0.15) 0%, rgba(244, 241, 236, 1) 70%);
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(184, 169, 201, 0.2);
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-    </style>
-</head>
-<body>
+      };
+    }
 
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center glass">
-        <span class="serif text-xl font-bold tracking-widest text-[#1F2A44]">YT</span>
-        <div class="space-x-8 text-sm uppercase tracking-widest font-medium opacity-80">
-            <a href="#about" class="hover:text-[#D48A8A] transition">About</a>
-            <a href="#research" class="hover:text-[#D48A8A] transition">Research</a>
-            <a href="#music" class="hover:text-[#D48A8A] transition">Creative</a>
-            <a href="#contact" class="hover:text-[#D48A8A] transition">Connect</a>
-        </div>
-    </nav>
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_name", config.hero_name || defaultConfig.hero_name],
+        ["hero_tagline", config.hero_tagline || defaultConfig.hero_tagline],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["about_title", config.about_title || defaultConfig.about_title],
+        ["contact_email", config.contact_email || defaultConfig.contact_email],
+        ["contact_message", config.contact_message || defaultConfig.contact_message]
+      ]);
+    }
 
-    <section class="h-screen flex items-center justify-center text-center px-4 hero-gradient">
-        <div class="max-w-3xl">
-            <h1 class="text-6xl md:text-8xl mb-4 text-[#1F2A44]">Yashvi Tyagi</h1>
-            <p class="serif italic text-2xl md:text-3xl text-[#6E7A8A] mb-6">“Where Data Connects Dreams.”</p>
-            <p class="text-lg text-[#6E7A8A] mb-10 max-w-xl mx-auto leading-relaxed">
-                Economics student, researcher, and music creator exploring human stories through data and sound.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#research" class="px-8 py-3 border border-[#1F2A44] hover:bg-[#1F2A44] hover:text-white transition rounded-full">View Research</a>
-                <a href="#music" class="px-8 py-3 bg-[#D48A8A] text-white hover:bg-opacity-90 transition rounded-full shadow-lg">Creative Space</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-24 px-8 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="relative">
-                <div class="w-full h-[500px] bg-[#B8A9C9] rounded-2xl overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80" alt="Aesthetic Workspace" class="w-full h-full object-cover opacity-80 mix-blend-multiply">
-                </div>
-                <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-[#D48A8A] rounded-full opacity-20 blur-2xl"></div>
-            </div>
-            <div>
-                <h2 class="text-4xl mb-6">The Narrative</h2>
-                <div class="space-y-4 text-[#6E7A8A] leading-relaxed text-lg">
-                    <p>I am an Economics undergraduate with a deep fascination for the invisible structures that govern our society—from policy frameworks to financial systems.</p>
-                    <p>My approach is analytical by nature but artistic by choice. Whether I'm cleaning datasets in R or composing a melody, I am always searching for the human story within the structure.</p>
-                    <p>Currently focused on development analysis and the intersection of digital behavior and economic psychology.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="research" class="py-24 bg-white/50 px-8">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl mb-12 text-center">Research & Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="bg-[#F4F1EC] p-8 rounded-2xl card-hover transition cursor-pointer border border-[#B8A9C9]/20">
-                    <span class="text-xs uppercase tracking-widest text-[#D48A8A] font-bold">Development Economics</span>
-                    <h3 class="text-2xl mt-2 mb-4">Arunachal Pradesh Development Report</h3>
-                    <p class="text-[#6E7A8A] text-sm mb-6">A longitudinal study (2000–2024) analyzing sector growth and policy impacts in Northeast India.</p>
-                    <button class="text-[#1F2A44] font-semibold text-sm flex items-center gap-2">View Findings <i data-lucide="external-link" class="w-4 h-4"></i></button>
-                </div>
-                <div class="bg-[#F4F1EC] p-8 rounded-2xl card-hover transition cursor-pointer border border-[#B8A9C9]/20">
-                    <span class="text-xs uppercase tracking-widest text-[#D48A8A] font-bold">Behavioral Analysis</span>
-                    <h3 class="text-2xl mt-2 mb-4">Short-Form Content & Attention</h3>
-                    <p class="text-[#6E7A8A] text-sm mb-6">SPSS-based research exploring how digital consumption patterns reshape cognitive focus.</p>
-                    <button class="text-[#1F2A44] font-semibold text-sm flex items-center gap-2">Read Paper <i data-lucide="external-link" class="w-4 h-4"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-8 max-w-6xl mx-auto text-center">
-        <h2 class="text-3xl mb-12">Toolbox</h2>
-        <div class="flex flex-wrap justify-center gap-4">
-            <span class="px-6 py-2 bg-[#B8A9C9]/10 rounded-full border border-[#B8A9C9]/30 text-[#1F2A44]">Econometrics</span>
-            <span class="px-6 py-2 bg-[#B8A9C9]/10 rounded-full border border-[#B8A9C9]/30 text-[#1F2A44]">Time Series (R)</span>
-            <span class="px-6 py-2 bg-[#B8A9C9]/10 rounded-full border border-[#B8A9C9]/30 text-[#1F2A44]">Power BI</span>
-            <span class="px-6 py-2 bg-[#B8A9C9]/10 rounded-full border border-[#B8A9C9]/30 text-[#1F2A44]">Policy Analysis</span>
-            <span class="px-6 py-2 bg-[#B8A9C9]/10 rounded-full border border-[#B8A9C9]/30 text-[#1F2A44]">Market Research</span>
-        </div>
-    </section>
-
-    <section id="music" class="py-24 bg-[#1F2A44] text-[#F4F1EC] px-8 rounded-t-[50px]">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-5xl mb-6">Sound & Story</h2>
-                <p class="opacity-80 text-lg mb-8 italic">"Exploring the emotional frequency of human existence through lyrical storytelling and ambient production."</p>
-                <div class="p-6 bg-white/5 rounded-xl border border-white/10 mb-6">
-                    <div class="flex items-center gap-4 mb-4">
-                        <i data-lucide="music" class="text-[#D48A8A]"></i>
-                        <span class="tracking-widest text-sm">LATEST COMPOSITION</span>
-                    </div>
-                    <div class="h-1 w-full bg-white/20 rounded-full overflow-hidden">
-                        <div class="h-full bg-[#D48A8A] w-1/3"></div>
-                    </div>
-                </div>
-                <p class="text-sm opacity-60 italic">Aspiring music producer & singer-songwriter.</p>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="aspect-square bg-[#B8A9C9]/20 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center p-4 text-center border border-white/5">
-                    <p class="text-xs uppercase tracking-tighter">Emotional Exploration</p>
-                </div>
-                <div class="aspect-square bg-[#D48A8A]/20 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center p-4 text-center border border-white/5 mt-8">
-                    <p class="text-xs uppercase tracking-tighter">Lyrical Precision</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="py-24 text-center px-8 bg-[#F4F1EC]">
-        <h2 class="text-4xl mb-4">Let's connect</h2>
-        <p class="text-[#6E7A8A] mb-12">Open to collaborations, research opportunities, and creative conversations.</p>
-        <div class="flex flex-col items-center gap-6">
-            <a href="mailto:yt48408@gmail.com" class="text-2xl font-light hover:text-[#D48A8A] transition border-b border-black/10 pb-2">yt48408@gmail.com</a>
-            <div class="flex gap-8 mt-4">
-                <a href="#" class="hover:text-[#D48A8A] transition flex items-center gap-2"><i data-lucide="linkedin"></i> LinkedIn</a>
-                <a href="#" class="hover:text-[#D48A8A] transition flex items-center gap-2"><i data-lucide="instagram"></i> Art</a>
-            </div>
-        </div>
-        <p class="mt-24 text-[10px] uppercase tracking-[0.3em] opacity-40">© 2025 Yashvi Tyagi. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-    </script>
-</body>
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    } else {
+      onConfigChange(defaultConfig);
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d595dd386c554f8',t:'MTc3MjM4MDc0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
